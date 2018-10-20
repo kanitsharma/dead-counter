@@ -1,0 +1,15 @@
+{
+  "name": "dead-counter",
+  "scripts": {
+    "dev": "NODE_ENV=development webpack-dev-server",
+    "build": "NODE_ENV=production webpack",
+    "elm": "elm"
+  },
+  "devDependencies": {
+    "@enginite/elmnesia": "0.1.0"
+  },
+  "dependencies": {
+    "file-loader": "^2.0.0",
+    "url-loader": "^1.1.2"
+  }
+}
