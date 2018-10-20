@@ -6,7 +6,8 @@
     "elm": "elm"
   },
   "devDependencies": {
-    "@enginite/elmnesia": "0.1.0"
+    "@enginite/elmnesia": "0.1.0",
+    "elm-format": "^0.8.1"
   },
   "dependencies": {
     "file-loader": "^2.0.0",
