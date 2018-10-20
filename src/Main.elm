@@ -15,11 +15,14 @@ import Time
 
 -- MODEL
 
+defaultSlide : String
+defaultSlide = "https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/19-full.jpg"
 
 slides : List String
 slides =
     [ "https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/23-full.jpg", "https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/21-full.jpg", "https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/15-full.jpg", "https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/9-full.jpg", "https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/12-full.jpg" ]
 
+slideIndexSwitcher ind = if ind == (List.length slides) then 0 else ind
 
 type alias Model =
     { zone : Time.Zone
@@ -56,8 +59,7 @@ init _ =
 type Msg
     = Tick Time.Posix
     | AdjustTimeZone Time.Zone
-    | GenerateWallpaper Time.Posix
-    | ChangeWallpaper Int
+    | ChangeWallpaper Time.Posix
 
 
 createDate : Time.Posix -> Time.Zone -> Date
@@ -109,12 +111,9 @@ update msg model =
             ( { model | zone = newZone }
             , Task.perform Tick Time.now
             )
-
-        GenerateWallpaper _ ->
-            ( model, Random.generate ChangeWallpaper <| Random.int 0 4 )
-
-        ChangeWallpaper num ->
-            ( { model | currentWallpaper = num }, Cmd.none )
+            
+        ChangeWallpaper _ ->
+            ( { model | currentWallpaper = slideIndexSwitcher model.currentWallpaper + 1 }, Cmd.none )
 
 
 
@@ -125,14 +124,14 @@ subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
         [ Time.every 1000 Tick
-        , Time.every 5000 GenerateWallpaper
+        , Time.every 5000 ChangeWallpaper
         ]
 
 
 view : Model -> Html Msg
 view model =
     Element.layout
-        [ image <| Maybe.withDefault "" <| List.head << List.drop model.currentWallpaper <| model.wallpapers
+        [ image <| Maybe.withDefault defaultSlide <| List.head << List.drop model.currentWallpaper <| model.wallpapers
         ]
     <|
         Element.column
