@@ -1221,11 +1221,7 @@ binwrap@0.1.4:
     tar "^2.2.1"
     unzip "^0.1.11"
 
-<<<<<<< HEAD
-binwrap@^0.2.0:
-=======
-binwrap@^0.2.0-rc2:
->>>>>>> 75a484e7229ee0ea048a435d4460c8d7cdbf6b02
+binwrap@^0.2.0, binwrap@^0.2.0-rc2:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/binwrap/-/binwrap-0.2.0.tgz#572d0f48c4e767d72d622f0b805ed7ce1db16f9a"
   integrity sha512-HUspivC8zPE37KJQ0S4zsNHUpymzQBinmpdMoa+JwmB6Mi+p30ywVZJcillYpbQmiX2wLykaaDJxXmwZkbaZGA==
@@ -2595,14 +2591,13 @@ elliptic@^6.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
 
-<<<<<<< HEAD
 elm-format@^0.8.1:
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/elm-format/-/elm-format-0.8.1.tgz#37796fc06b8460a6d76a054a1216d86d8481155e"
   integrity sha512-uLcDICdmEoRBaCp3PobcvHtUej2RJFHRYfMd7i3CSH+RsajJYTdiPkviKIq823Kd4gfjQMpNajEyM1lLFez7+A==
   dependencies:
     binwrap "^0.2.0"
-=======
+
 elm-hot-webpack-loader@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/elm-hot-webpack-loader/-/elm-hot-webpack-loader-1.0.2.tgz#24258a349c2f520984994dec6fa0a968f5eb96ed"
@@ -2638,7 +2633,6 @@ elm-test@^0.19.0-beta8:
     xmlbuilder "^8.2.2"
   optionalDependencies:
     fsevents "1.2.4"
->>>>>>> 75a484e7229ee0ea048a435d4460c8d7cdbf6b02
 
 elm-webpack-loader@^5.0.0:
   version "5.0.0"
@@ -4949,27 +4943,21 @@ multicast-dns@^6.0.1:
     dns-packet "^1.3.1"
     thunky "^1.0.2"
 
-<<<<<<< HEAD
-=======
 murmur-hash-js@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/murmur-hash-js/-/murmur-hash-js-1.0.0.tgz#5041049269c96633c866386960b2f4289e75e5b0"
   integrity sha1-UEEEkmnJZjPIZjhpYLL0KJ515bA=
 
->>>>>>> 75a484e7229ee0ea048a435d4460c8d7cdbf6b02
 mustache@^2.3.0:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/mustache/-/mustache-2.3.2.tgz#a6d4d9c3f91d13359ab889a812954f9230a3d0c5"
   integrity sha512-KpMNwdQsYz3O/SBS1qJ/o3sqUJ5wSb8gb0pul8CO0S56b9Y2ALm8zCfsjPXsqGFfoNBkDwZuZIAjhsZI03gYVQ==
 
-<<<<<<< HEAD
-=======
 mute-stream@0.0.7, mute-stream@~0.0.4:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
   integrity sha1-MHXOk7whuPq0PhvE2n6BFe0ee6s=
 
->>>>>>> 75a484e7229ee0ea048a435d4460c8d7cdbf6b02
 nan@^2.9.2:
   version "2.11.1"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.11.1.tgz#90e22bccb8ca57ea4cd37cc83d3819b52eea6766"
@@ -7511,14 +7499,11 @@ unset-value@^1.0.0:
     has-value "^0.3.1"
     isobject "^3.0.0"
 
-<<<<<<< HEAD
-=======
 unzip-response@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/unzip-response/-/unzip-response-2.0.1.tgz#d2f0f737d16b0615e72a6935ed04214572d56f97"
   integrity sha1-0vD3N9FrBhXnKmk17QQhRXLVb5c=
 
->>>>>>> 75a484e7229ee0ea048a435d4460c8d7cdbf6b02
 unzip-stream@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/unzip-stream/-/unzip-stream-0.3.0.tgz#c30c054cd6b0d64b13a23cd3ece911eb0b2b52d8"

@@ -8,9 +8,10 @@ import Html exposing (Html)
 import Task
 import Time
 
-
-
 -- MODEL
+
+slides : List String
+slides = ["https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/23-full.jpg", "https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/21-full.jpg", "https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/15-full.jpg", "https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/9-full.jpg", "https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/12-full.jpg"]
 
 
 type alias Model =
@@ -94,7 +95,6 @@ update msg model =
 
 
 -- SUBSCRIPTIONS
-
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
