@@ -69,6 +69,13 @@ createDate time zone =
     Date day hour minute second
 
 
+toPaddedString : String -> String
+toPaddedString number =
+    case number of
+    number > 9 -> "0" ++ (String.fromInt number)
+    _ -> String.fromInt number
+            
+
 getDiffDate : Date -> Date -> Date
 getDiffDate (Date cday chour cminute csecond) (Date tday thour tminute tsecond) =
     Date (tday - cday) (thour - chour) (tminute - cminute) (tsecond - csecond)
@@ -76,7 +83,7 @@ getDiffDate (Date cday chour cminute csecond) (Date tday thour tminute tsecond) 
 
 getDateString : Date -> String
 getDateString (Date day hour minute second) =
-    String.fromInt day ++ ":" ++ String.fromInt hour ++ ":" ++ String.fromInt minute ++ ":" ++ String.fromInt second
+    toPaddedString day ++ ":" ++ toPaddedString hour ++ ":" ++ toPaddedString minute ++ ":" ++ toPaddedString second
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
