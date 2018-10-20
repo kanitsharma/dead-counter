@@ -5,13 +5,20 @@ import Element exposing (above, alpha, centerX, centerY, fill, height, html, pad
 import Element.Background exposing (color, image)
 import Element.Font as Font
 import Html exposing (Html)
+import List
+import Maybe
+import Random
 import Task
 import Time
 
+
+
 -- MODEL
 
+
 slides : List String
-slides = ["https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/23-full.jpg", "https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/21-full.jpg", "https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/15-full.jpg", "https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/9-full.jpg", "https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/12-full.jpg"]
+slides =
+    [ "https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/23-full.jpg", "https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/21-full.jpg", "https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/15-full.jpg", "https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/9-full.jpg", "https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/12-full.jpg" ]
 
 
 type alias Model =
@@ -19,6 +26,8 @@ type alias Model =
     , time : Time.Posix
     , currentDate : Date
     , targetDate : Date
+    , currentWallpaper : Int
+    , wallpapers : List String
     }
 
 
@@ -35,10 +44,8 @@ init _ =
         zone =
             Time.utc
     in
-    ( Model zone time (createDate time zone) (Date 26 24 60 60)
-    , Cmd.batch
-        [ Task.perform AdjustTimeZone Time.here
-        ]
+    ( Model zone time (createDate time zone) (Date 26 24 60 60) 0 slides
+    , Task.perform AdjustTimeZone Time.here
     )
 
 
@@ -49,6 +56,8 @@ init _ =
 type Msg
     = Tick Time.Posix
     | AdjustTimeZone Time.Zone
+    | GenerateWallpaper Time.Posix
+    | ChangeWallpaper Int
 
 
 createDate : Time.Posix -> Time.Zone -> Date
@@ -69,12 +78,14 @@ createDate time zone =
     Date day hour minute second
 
 
-toPaddedString : String -> String
+toPaddedString : Int -> String
 toPaddedString number =
-    case number of
-    number > 9 -> "0" ++ (String.fromInt number)
-    _ -> String.fromInt number
-            
+    if number < 9 then
+        "0" ++ String.fromInt number
+
+    else
+        String.fromInt number
+
 
 getDiffDate : Date -> Date -> Date
 getDiffDate (Date cday chour cminute csecond) (Date tday thour tminute tsecond) =
@@ -83,7 +94,7 @@ getDiffDate (Date cday chour cminute csecond) (Date tday thour tminute tsecond) 
 
 getDateString : Date -> String
 getDateString (Date day hour minute second) =
-    toPaddedString day ++ ":" ++ toPaddedString hour ++ ":" ++ toPaddedString minute ++ ":" ++ toPaddedString second
+    toPaddedString day ++ " : " ++ toPaddedString hour ++ " : " ++ toPaddedString minute ++ " : " ++ toPaddedString second
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -99,26 +110,36 @@ update msg model =
             , Task.perform Tick Time.now
             )
 
+        GenerateWallpaper _ ->
+            ( model, Random.generate ChangeWallpaper <| Random.int 0 4 )
+
+        ChangeWallpaper num ->
+            ( { model | currentWallpaper = num }, Cmd.none )
+
 
 
 -- SUBSCRIPTIONS
 
+
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Time.every 1000 Tick
+    Sub.batch
+        [ Time.every 1000 Tick
+        , Time.every 5000 GenerateWallpaper
+        ]
 
 
 view : Model -> Html Msg
 view model =
     Element.layout
-        [ image "https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/10-full.jpg"
+        [ image <| Maybe.withDefault "" <| List.head << List.drop model.currentWallpaper <| model.wallpapers
         ]
     <|
         Element.column
-            [ color (rgb255 0 0 0), alpha 0.7, Font.color (rgb255 255 255 255), width fill, height fill, Font.family [ Font.typeface "marston", Font.sansSerif ], Font.size 95 ]
+            [ color (rgb255 0 0 0), alpha 0.7, Font.color (rgb255 255 255 255), width fill, height fill, Font.family [ Font.typeface "marston", Font.sansSerif ], Font.size 105 ]
             [ Element.column
                 [ centerX, centerY ]
-                [ Element.row [] [ text "Red Dead Count Down" ]
+                [ Element.row [] [ text "Red Dead Countdown" ]
                 , Element.row [ centerX ] [ text <| getDateString <| getDiffDate model.currentDate model.targetDate ]
                 ]
             ]
