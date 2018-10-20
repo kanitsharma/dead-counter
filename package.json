@@ -3,13 +3,16 @@
   "scripts": {
     "dev": "NODE_ENV=development webpack-dev-server",
     "build": "NODE_ENV=production webpack",
-    "elm": "elm"
+    "elm": "elm",
+    "elmmake": "elm-make"
   },
   "devDependencies": {
     "@enginite/elmnesia": "0.1.0"
   },
   "dependencies": {
+    "create-elm-app": "^2.2.0",
     "file-loader": "^2.0.0",
+    "global": "^4.3.2",
     "url-loader": "^1.1.2"
   }
 }

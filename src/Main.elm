@@ -8,7 +8,7 @@ import Element.Background exposing (color, image)
 main = 
     Element.layout [image "https://www.rockstargames.com/reddeadredemption2/rockstar_games/r_d_r2_core/img/screenshots/10-full.jpg"] 
     columns
-
+    
 columns = Element.column [ Font.family
             [ Font.typeface "marston"
             , Font.sansSerif
