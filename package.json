@@ -4,11 +4,13 @@
     "dev": "NODE_ENV=development webpack-dev-server",
     "build": "NODE_ENV=production webpack",
     "elm": "elm",
-    "elmmake": "elm-make"
+    "elmmake": "elm-make",
+    "deploy": "yarn build && gh-pages -d dist"
   },
   "devDependencies": {
     "@enginite/elmnesia": "0.1.0",
-    "elm-format": "^0.8.1"
+    "elm-format": "^0.8.1",
+    "gh-pages": "^2.0.1"
   },
   "dependencies": {
     "create-elm-app": "^2.2.0",

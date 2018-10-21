@@ -88,7 +88,7 @@ createDate time zone =
 
 toPaddedString : Int -> String
 toPaddedString number =
-    if number < 9 then
+    if number < 10 then
         "0" ++ String.fromInt number
 
     else
